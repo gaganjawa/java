@@ -1,7 +1,5 @@
 package com.binarytrees.tree;
 
-import org.junit.jupiter.api.Test;
-
 public class BinaryTree {
 
 	Node root;
@@ -63,13 +61,34 @@ public class BinaryTree {
 	}
 
 	private Node deleteRecursive(Node current, int value) {
-		if (current != null) {
+		if (current == null) {
 			return null;
 		}
 		
-		if (current.value == value) {
+		if (value == current.value) {
 			// Node found
-			// ..code to delelte the code
+			
+			//Case 1: the node has no child nodes - set parent = null
+			if (current.left == null && current.right == null) {
+				return null;
+			} 
+			
+			//Case 2: the node one child - replace parent with the child node
+			if (current.left == null) {
+				return current.right;
+			}
+			
+			if (current.right == null) {
+				return current.left;
+			}
+			
+			//Case 3: the node has 2 child nodes - need to reorganize tree
+			//Replace current node with its right subtree's smallest value
+			//then delete value from the subtree
+			int smallestValue = findSmalleValue(current.right);
+			current.value = smallestValue;
+			current.right = deleteRecursive(current.right, smallestValue);
+			return current;
 		}
 		
 		if (value < current.value) {
@@ -79,6 +98,14 @@ public class BinaryTree {
 		current.right = deleteRecursive(current.right, value);
 		
 		return current;
+	}
+	
+	public void delete(int value) {
+		root = deleteRecursive(root, value);
+	}
+	
+	private int findSmalleValue(Node root) {
+		return root.left == null ? root.value : findSmalleValue(root.left);
 	}
 	
 	@Override

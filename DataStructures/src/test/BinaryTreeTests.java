@@ -1,3 +1,4 @@
+package test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,15 @@ class BinaryTreeTests {
 		
 		assertFalse(bt.containsNode(0));
 		assertFalse(bt.containsNode(1));
+	}
+	
+	@Test
+	public void givenABinaryTree_WhenDeletingElements_ThenTreeDoesNotContainThoseElements() {
+		BinaryTree bt = createBinaryTree();
+		
+		assertTrue(bt.containsNode(6));
+		bt.delete(6);
+		assertFalse(bt.containsNode(6));
 	}
 	
 	
