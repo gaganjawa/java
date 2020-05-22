@@ -2,7 +2,7 @@ package com.binarytrees.tree;
 
 public class BinaryTree {
 
-	Node root;
+	public Node root;
 	
 	static class Node {
 		int value;
@@ -85,7 +85,7 @@ public class BinaryTree {
 			//Case 3: the node has 2 child nodes - need to reorganize tree
 			//Replace current node with its right subtree's smallest value
 			//then delete value from the subtree
-			int smallestValue = findSmalleValue(current.right);
+			int smallestValue = findSmallestValue(current.right);
 			current.value = smallestValue;
 			current.right = deleteRecursive(current.right, smallestValue);
 			return current;
@@ -104,8 +104,32 @@ public class BinaryTree {
 		root = deleteRecursive(root, value);
 	}
 	
-	private int findSmalleValue(Node root) {
-		return root.left == null ? root.value : findSmalleValue(root.left);
+	public void traverseInOrder(Node node) {
+		if (node != null) {
+			traverseInOrder(node.left);
+			System.out.print(" " + node.value);
+			traverseInOrder(node.right);
+		}
+	}
+	
+	public void traversePreOrder(Node node) {
+		if (node != null) {
+			System.out.print(" " + node.value);
+			traversePreOrder(node.left);
+			traversePreOrder(node.right);
+		}
+	}
+	
+	public void traversePostOrder(Node node) {
+		if (node != null) {
+			traversePostOrder(node.left);
+			traversePostOrder(node.right);
+			System.out.print(" " + node.value);
+		}
+	}
+	
+	private int findSmallestValue(Node root) {
+		return root.left == null ? root.value : findSmallestValue(root.left);
 	}
 	
 	@Override

@@ -6,6 +6,16 @@ public class Main {
 
 	public static void main(String[] args) {
 		System.out.println(createBinaryTree());
+		
+		BinaryTree bt = new BinaryTree();
+		bt = createBinaryTree();
+		
+		bt.traverseInOrder(bt.root);
+		System.out.println();
+		bt.traversePreOrder(bt.root);
+		System.out.println();
+		bt.traversePostOrder(bt.root);
+		
 	}
 	
 	
