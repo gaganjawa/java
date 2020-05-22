@@ -1,5 +1,8 @@
 package com.binarytrees.tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinaryTree {
 
 	public Node root;
@@ -104,6 +107,7 @@ public class BinaryTree {
 		root = deleteRecursive(root, value);
 	}
 	
+	//DFS method
 	public void traverseInOrder(Node node) {
 		if (node != null) {
 			traverseInOrder(node.left);
@@ -125,6 +129,31 @@ public class BinaryTree {
 			traversePostOrder(node.left);
 			traversePostOrder(node.right);
 			System.out.print(" " + node.value);
+		}
+	}
+	
+	//BFS method
+	public void traverseLevelOrder() {
+		if (root == null) {
+			return;
+		}
+		
+		Queue<BinaryTree.Node> nodes = new LinkedList<>();
+		nodes.add(root);
+		
+		while(!nodes.isEmpty()) {
+			
+			Node node = nodes.remove();
+			
+			System.out.print(" " + node.value);
+			
+			if (node.left != null) {
+				nodes.add(node.left);
+			}
+			
+			if (node.right != null) {
+				nodes.add(node.right);
+			}
 		}
 	}
 	
