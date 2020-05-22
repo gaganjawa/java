@@ -1,6 +1,7 @@
 package application;
 
 import com.binarytrees.tree.BinaryTree;
+import com.binarytrees.tree.Node;
 
 public class BinaryTreeMain {
 
@@ -18,25 +19,41 @@ public class BinaryTreeMain {
 		
 		System.out.println("\nBFS traversal");
 		bt.traverseLevelOrder();
+		System.out.println();
+		
+		System.out.println("In order predecessor");
+		bt.findPredecessor(new Node(11));
 		
 	}
 	
-	//       6
-	//     /   \
-	//    4     8
-	//	 / \   / \
-	//	3   5 7   9
+	//			   11
+	//			 /	  \
+	//          /	   \
+	//		   6	    15
+	//    	 /   \       \
+	//    	4     8       20
+	//	   / \   / \	 /
+	// 	  3   5 7   10	17
+	//	 /		   /
+	//  1		  9
 	
 	private static BinaryTree createBinaryTree() {
 	    BinaryTree bt = new BinaryTree();
 	    
+	    bt.add(11);
 	    bt.add(6);
 	    bt.add(4);
 	    bt.add(8);
 	    bt.add(3);
 	    bt.add(5);
 	    bt.add(7);
+	    bt.add(10);
 	    bt.add(9);
+	    bt.add(1);
+	    bt.add(15);
+	    bt.add(20);
+	    bt.add(17);
+	    
 	 
 	    return bt;
 	}

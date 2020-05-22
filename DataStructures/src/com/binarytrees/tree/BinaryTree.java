@@ -7,23 +7,6 @@ public class BinaryTree {
 
 	public Node root;
 	
-	static class Node {
-		int value;
-		Node left, right;
-		
-		Node(int value) {
-			this.value = value;
-			this.left = null;
-			this.right = null;
-		}
-
-		@Override
-		public String toString() {
-			return "Node [value=" + value + ", left=" + left + ", right=" + right + "]";
-		}
-		
-	}
-	
 	private Node addRecursive(Node current, int value) {
 		
 		if (current == null) {
@@ -138,7 +121,7 @@ public class BinaryTree {
 			return;
 		}
 		
-		Queue<BinaryTree.Node> nodes = new LinkedList<>();
+		Queue<Node> nodes = new LinkedList<>();
 		nodes.add(root);
 		
 		while(!nodes.isEmpty()) {
@@ -155,6 +138,40 @@ public class BinaryTree {
 				nodes.add(node.right);
 			}
 		}
+	}
+	
+	//Case 1: If node has left subtree, find the righmost node
+	//Case 2: If left subtree is not present, search from root and find right ancestor(last right in path).
+	private Node findInOrderPredecessor(Node root, Node node, Node prec) {
+		
+		if (root == null) {
+			return prec;
+		}
+		
+		if (root.value == node.value) {
+			if (root.left != null) {
+				return findMaximum(root.left);
+			}
+		} else if (node.value < root.value) {
+			return findInOrderPredecessor(root.left, node, prec);
+		} else {
+			prec = root;
+			return findInOrderPredecessor(root.right, node,  prec);
+		}
+		return prec;
+		
+	}
+	
+	public void findPredecessor(Node node) {
+		root = findInOrderPredecessor(root, node, null);
+		System.out.println(root.value);
+	}
+
+	private Node findMaximum(Node node) {
+		while(null != node.right) {
+			node = node.right;
+		}
+		return node;
 	}
 	
 	private int findSmallestValue(Node root) {
