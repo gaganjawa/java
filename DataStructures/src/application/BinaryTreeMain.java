@@ -2,32 +2,30 @@ package application;
 
 import com.binarytrees.tree.BinaryTree;
 
-public class Main {
+public class BinaryTreeMain {
 
 	public static void main(String[] args) {
-		System.out.println(createBinaryTree());
 		
 		BinaryTree bt = new BinaryTree();
 		bt = createBinaryTree();
 		
+		System.out.println("DFS traversals");
 		bt.traverseInOrder(bt.root);
 		System.out.println();
 		bt.traversePreOrder(bt.root);
 		System.out.println();
 		bt.traversePostOrder(bt.root);
 		
-	}
-	
-	
-	private static void printInorderTraversal(BinaryTree bt) {
+		System.out.println("\nBFS traversal");
+		bt.traverseLevelOrder();
 		
-		while(true) {
-			while(bt != null) {
-				
-			}
-		}
 	}
 	
+	//       6
+	//     /   \
+	//    4     8
+	//	 / \   / \
+	//	3   5 7   9
 	
 	private static BinaryTree createBinaryTree() {
 	    BinaryTree bt = new BinaryTree();
