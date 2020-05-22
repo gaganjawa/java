@@ -2,7 +2,7 @@ package application;
 
 import com.binarytrees.tree.BinaryTree;
 
-public class Main {
+public class BinaryTreeMain {
 
 	public static void main(String[] args) {
 		System.out.println(createBinaryTree());
@@ -16,16 +16,6 @@ public class Main {
 		System.out.println();
 		bt.traversePostOrder(bt.root);
 		
-	}
-	
-	
-	private static void printInorderTraversal(BinaryTree bt) {
-		
-		while(true) {
-			while(bt != null) {
-				
-			}
-		}
 	}
 	
 	
