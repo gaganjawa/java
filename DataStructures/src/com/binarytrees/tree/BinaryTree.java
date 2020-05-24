@@ -142,36 +142,57 @@ public class BinaryTree {
 	
 	//Case 1: If node has left subtree, find the righmost node
 	//Case 2: If left subtree is not present, search from root and find right ancestor(last right in path).
-	private Node findInOrderPredecessor(Node root, Node node, Node prec) {
-		
+	private Integer findInOrderPredecessor(Node root, int value, Node prec) {
 		if (root == null) {
-			return prec;
+			return prec == null ? null : prec.value;
 		}
 		
-		if (root.value == node.value) {
+		if (root.value == value) {
 			if (root.left != null) {
 				return findMaximum(root.left);
 			}
-		} else if (node.value < root.value) {
-			return findInOrderPredecessor(root.left, node, prec);
+		} else if (value < root.value) {
+			return findInOrderPredecessor(root.left, value, prec);
 		} else {
 			prec = root;
-			return findInOrderPredecessor(root.right, node,  prec);
+			return findInOrderPredecessor(root.right, value, prec);
 		}
-		return prec;
+		return prec == null ? null : prec.value;
 		
 	}
 	
-	public void findPredecessor(Node node) {
-		root = findInOrderPredecessor(root, node, null);
-		System.out.println(root.value);
+	private Integer findInOrderSucessor(Node root, int value, Node succ) {
+		if (root == null) {
+			return succ.value;
+		}
+
+		if (root.value == value) {
+			if (root.right != null) {
+				return findSmallestValue(root.right);
+			}
+		} else if (root.value < value) {
+			return findInOrderSucessor(root.right, value, succ);
+		} else {
+			succ = root;
+			return findInOrderSucessor(root.left, value, succ);
+		}
+		
+		return succ.value;
+	}
+	
+	public void findSucessor(int value) {
+		Integer succ = findInOrderSucessor(root, value, null);
+		System.out.println(" "+ succ);
+	}
+	
+	
+	public void findPredecessor(int value) {
+		Integer pred = findInOrderPredecessor(root, value, null);
+		System.out.println(" " + pred);
 	}
 
-	private Node findMaximum(Node node) {
-		while(null != node.right) {
-			node = node.right;
-		}
-		return node;
+	private int findMaximum(Node root) {
+		return root.right == null ? root.value : findMaximum(root.right);
 	}
 	
 	private int findSmallestValue(Node root) {
