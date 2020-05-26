@@ -32,7 +32,7 @@ public class CSVReader {
 		}
 	}
 	
-	private File getFileFromResource(String fileName) {
+	public File getFileFromResource(String fileName) {
 		
 		URL resource = getClass().getClassLoader().getResource(fileName);
 		if (resource == null) {
