@@ -1,2 +1,4 @@
-/application/
-/test/
+/.classpath
+.project
+.settings/
+bin/

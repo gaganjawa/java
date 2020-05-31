@@ -1,17 +1,25 @@
 package util;
 
-public class SumOfTwoIntegersInArray {
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+public class ArrayPractice {
 	
 	public static void main(String[] args) {
-		SumOfTwoIntegersInArray sumOfTwoIntegersInArray = new SumOfTwoIntegersInArray();
+
+		ArrayPractice sumOfTwoIntegersInArray = new ArrayPractice();
 		int[] arr = {1, 21, 3, 14, 5, 60, 7, 6};
 		int [] result = sumOfTwoIntegersInArray.findSum(arr, 27);
 		
 		System.out.println("Result = ["+result[0]+", "+result[1]+"]");
+		
 	}
 
 	private int sum;
 	
+	//sumOfTwoIntegersInArray = n
 	public int[] findSum(int[] arr, int n) {
 		
 		QuickSort quickSort = new QuickSort();
@@ -34,6 +42,21 @@ public class SumOfTwoIntegersInArray {
 		}
 		return arr;
 		
+	}
+	
+	//Re-arrange +ve and -ve values
+	public void rearrange(int[] arr) {
+		int j=0;
+		for(int i=0; i<arr.length ; i++) {
+			if (arr[i] < 0) {
+				if (i!=j) {
+					int temp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = temp;
+				}
+				j++;
+			}
+		}
 	}
 
 }
