@@ -1,6 +1,6 @@
 package application;
 
-import stack.Stack;
+import stackandqueue.Stack;
 
 public class StackMain {
 	

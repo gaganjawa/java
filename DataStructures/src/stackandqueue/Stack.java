@@ -1,4 +1,4 @@
-package stack;
+package stackandqueue;
 
 public class Stack <V> {
     private int maxSize;
