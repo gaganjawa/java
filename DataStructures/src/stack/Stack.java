@@ -39,4 +39,21 @@ public class Stack <V> {
             return null;
         return array[top];
     }
+
+    //inserts a value to the top of Stack
+    public void push(V value){
+        if(isFull()) {
+            System.err.println("Stack is Full!");
+            return;
+        }
+        array[++top] = value; //increments the top and adds value to updated top
+    }
+
+    //removes a value from top of Stack and returns
+    public V pop(){
+        if(isEmpty())
+            return null;
+        return array[top--]; //returns value and top and decrements the top
+    }
+
 }
