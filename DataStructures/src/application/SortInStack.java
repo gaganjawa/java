@@ -30,6 +30,29 @@ public class SortInStack {
 		while (!newStack.isEmpty())
 			stack.push(newStack.pop());
 	}
+	
+	public static Stack<Integer> sortStackRecursive(Stack<Integer> stack) {
+		
+		if (!stack.isEmpty()) {
+			Integer value = stack.pop();
+			sortStackRecursive(stack);
+			insert(stack, value);
+		}
+		
+		return stack;
+	}
+
+
+	private static void insert(Stack<Integer> stack, Integer value) {
+		
+		if (stack.isEmpty() || value < stack.top()) {
+			stack.push(value);
+		} else {
+			int temp = stack.pop();
+			insert(stack, value);
+			stack.push(temp);
+		}
+	}
 
 	public static void main(String args[]) {
 
@@ -45,5 +68,18 @@ public class SortInStack {
 		while (!stack.isEmpty()) {
 			System.out.print(stack.pop()+" ");
 		}
+		System.out.println();
+		stack.push(2);
+		stack.push(97);
+		stack.push(4);
+		stack.push(42);
+		stack.push(12);
+		stack.push(60);
+		stack.push(23);
+		sortStackRecursive(stack);
+		while (!stack.isEmpty()) {
+			System.out.print(stack.pop()+" ");
+		}
+		
 	}
 }
