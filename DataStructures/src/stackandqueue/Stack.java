@@ -1,10 +1,13 @@
 package stackandqueue;
 
+import com.binarytrees.tree.Node;
+
 public class Stack<V> {
     private int maxSize;
     private int top;
     private V[] array;
     private int currentSize;
+    Node n;
 
     /*
     Java does not allow generic type arrays. So we have used an
@@ -18,6 +21,8 @@ public class Stack<V> {
         this.top = -1; //initially when stack is empty
         array = (V[]) new Object[max_size];//type casting Object[] to V[]
         this.currentSize = 0;
+        
+        
     }
 
     public int getCurrentSize() {
