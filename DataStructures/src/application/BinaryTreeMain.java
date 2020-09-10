@@ -7,7 +7,7 @@ public class BinaryTreeMain {
 	public static void main(String[] args) {
 		
 		BinaryTree bt = new BinaryTree();
-		bt = createBinaryTree();
+		bt = new BinaryTreeMain().createBinaryTree();
 		
 		System.out.println("DFS traversals :");
 		bt.traverseInOrder(bt.root);
@@ -42,7 +42,7 @@ public class BinaryTreeMain {
 	//	 /		   /
 	//  1		  9
 	
-	private static BinaryTree createBinaryTree() {
+	public BinaryTree createBinaryTree() {
 	    BinaryTree bt = new BinaryTree();
 	    
 	    bt.add(11);
@@ -59,7 +59,6 @@ public class BinaryTreeMain {
 	    bt.add(20);
 	    bt.add(17);
 	    bt.add(13);
-	    
 	 
 	    return bt;
 	}
